@@ -17,6 +17,12 @@
   margin-bottom: 48px;
 }
 
+.brandBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .brand {
   text-transform: uppercase;
   letter-spacing: 0.25em;
@@ -24,22 +30,45 @@
   line-height: 1.6;
 }
 
+.tagline {
+  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  opacity: 0.6;
+  margin: 0;
+}
+
 .nav {
   display: flex;
-  gap: 32px;
-  font-size: 0.95rem;
-  text-transform: lowercase;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.nav a {
+.navButton {
+  border: 1px solid rgba(244, 244, 244, 0.2);
+  border-radius: 999px;
+  background: transparent;
   color: inherit;
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
+  letter-spacing: 0.25em;
+  font-size: 0.72rem;
+  padding: 10px 18px 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.nav a:hover {
-  opacity: 1;
+.navButton:hover {
+  border-color: rgba(244, 244, 244, 0.6);
+  background: rgba(244, 244, 244, 0.05);
+}
+
+.navDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.6;
 }
 
 .main {

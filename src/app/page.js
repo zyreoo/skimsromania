@@ -1,5 +1,13 @@
+'use client';
+
 import Image from "next/image";
 import styles from "./page.module.css";
+
+const navItems = [
+  { id: "products", label: "Products" },
+  { id: "reviews", label: "Reviews" },
+  { id: "care", label: "Care" },
+];
 
 const productGallery = [
   {
@@ -68,42 +76,60 @@ const reviewGallery = [
 ];
 
 export default function Home() {
+  const scrollToSection = (targetId) => () => {
+    const target = document.getElementById(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className={styles.page}>
       <header className={styles.header}>
-        <div className={styles.brand}>
-          <span>SKIMS</span>
-          <span>Romania</span>
+        <div className={styles.brandBlock}>
+          <div className={styles.brand}>
+            <span>SKIMS</span>
+            <span>Romania</span>
+          </div>
+          <p className={styles.tagline}>Monochrome sculptwear studio · Bucharest</p>
         </div>
         <nav className={styles.nav}>
-          <a href="#products">products</a>
-          <a href="#reviews">reviews</a>
-          <a href="#care">care</a>
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              className={styles.navButton}
+              onClick={scrollToSection(item.id)}
+            >
+              <span>{item.label}</span>
+              <span className={styles.navDot} />
+            </button>
+          ))}
         </nav>
       </header>
 
       <main className={styles.main}>
         <section className={`${styles.section} ${styles.hero}`}>
-          <p className={styles.badge}>skims romania · dresses</p>
+          <p className={styles.badge}>SKIMS Romania · Dresses</p>
           <h1>Minimal lines. Maximum confidence.</h1>
           <p className={styles.lede}>
             Sculpted silhouettes tailored for Bucharest nights and Black Sea
-            escapes. Built with cooling corespun fabric so you move light, feel
+            escapes. Built with cooling corespun fabric so you move lightly, feel
             grounded, and look impossibly polished.
           </p>
           <div className={styles.actions}>
-            <button className={styles.primary}>shop drop</button>
-            <button className={styles.secondary}>visit showroom</button>
+            <button className={styles.primary}>Shop the drop</button>
+            <button className={styles.secondary}>Visit the showroom</button>
           </div>
         </section>
 
         <section id="products" className={styles.section}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.label}>products</p>
+              <p className={styles.label}>Products</p>
               <h2>Core dresses, restocked weekly.</h2>
             </div>
-            <span className={styles.scrollHint}>swipe left to explore</span>
+            <span className={styles.scrollHint}>Swipe left to explore</span>
           </div>
           <div className={styles.rail}>
             {productGallery.map((product) => (
@@ -133,10 +159,10 @@ export default function Home() {
         <section id="reviews" className={styles.section}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.label}>reviews</p>
+              <p className={styles.label}>Reviews</p>
               <h2>Loved by the SKIMS Bucharest studio.</h2>
             </div>
-            <span className={styles.scrollHint}>press + hold to read</span>
+            <span className={styles.scrollHint}>Press + hold to read</span>
           </div>
           <div className={styles.rail}>
             {reviewGallery.map((review) => (
@@ -151,15 +177,15 @@ export default function Home() {
 
         <section id="care" className={styles.section}>
           <div className={styles.careCard}>
-            <p className={styles.label}>care</p>
+            <p className={styles.label}>Care</p>
             <h2>Steam, hang, repeat.</h2>
             <p>
               Complimentary lifetime steaming at the SKIMS Romania showroom.
-              Drop in with your dress, leave pressed in five minutes.
+              Drop in with your dress; leave with it pressed in five minutes.
             </p>
             <div className={styles.meta}>
-              <span>str. Doamnei 17 · Bucharest</span>
-              <span>open daily 10–22</span>
+              <span>Str. Doamnei 17 · Bucharest</span>
+              <span>Open daily 10–22</span>
             </div>
           </div>
         </section>
